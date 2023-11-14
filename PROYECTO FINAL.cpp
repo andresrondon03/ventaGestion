@@ -20,14 +20,21 @@ Fecha: 27 de noviembre de 2023
 //Declaramos variables
 #include <iostream>
 #include <locale.h>
+#include <string>
+#include <sstream> 
+#include <cstdlib> 
+
+using namespace std;
 
 //Se incluyen las funciones de los submenús
 void menu1();
 void menu2();
 void menu3();
+//Incluimos funciones que utilizaremos para la ejecucuión del programa
+bool EsEntero(const string& str);
+int ObtenerEnteroValido(const string& mensaje);
 
 
-using namespace std;
 
 int main(){
 	//Esta orden permite los caracteres especiales
@@ -36,7 +43,7 @@ int main(){
 	int n;
 	//Se crea la portada del programa
 	system("color A");
-	cout<<"\t\t\tTitulo del proyecto\n";
+	cout<<"\t\t\tINVENTAVENTA\n";
 	cout<<endl;
 	cout<<"\t\t                *****             \n";
 	cout<<"\t\t                *****             \n";
@@ -58,14 +65,13 @@ int main(){
 	cout<<"\t\t                *****             \n";
 	cout<<"\t\t                *****             \n";
 	cout<<endl;
-	cout<<"\tPresione 0 para continuar\t";
-	cin>>n;
+	n = ObtenerEnteroValido("\tPresione 0 para continuar\t");
 	system("cls");
 	
 	// ¡¡¡Se inicia todo el programa!!!
 	
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
-	if (n==0)
+	if (n==0) //¿Qué pasa si no es 0?
 	{
 		system("color 4F");
 		cout<<"\t\t¡¡¡Bienvenido a la gestión de tu emprendimiento!!!\n";
@@ -78,15 +84,13 @@ int main(){
 			cout<<"2. Ventas\n";
 			cout<<"3. Devoluciones\n";
 			cout<<"4. Salir\n"<<endl;
-			cout<<"Por favor, ingresa una opción: ";
-			cin>>menu;
+			menu = ObtenerEnteroValido("Por favor, ingresa una opción: ");
 			cout<<endl<<endl;
 			cout<<"\t\tSiempre disponible para ayudarte :D\n";
 			//Se limitan las respuestas del usuario
 		    while (menu<0||menu>4){
 		    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-		    	cout<<"Por favor, selecciona una opción válida \n";
-		    	cin>>menu;
+		    	menu = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
 			}
 			//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú principal
 			switch(menu){
@@ -124,6 +128,8 @@ int main(){
 		cout<<endl;
 		cout<<"\t\tNos vemos en una próxima ocasión, éxitos :D\n";
 		system("pause");
+	} else{
+		n = ObtenerEnteroValido("\tPresione 0 para continuar\t");
 	}
 	return 0;
 }
@@ -142,13 +148,11 @@ void menu1(){
 	    cout<<"3. Añadir existencia a un producto. \n";
 	    cout<<"4. Salir. \n";
 	    cout<<endl;
-	    cout<<"Por favor, ingresa una opción: ";
-	    cin>>menu1;
+	    menu1 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
 	    //Se valida que el programa no acepte otro número aparte de los que se permiten en el menú
 	    while (menu1<0||menu1>4){
 	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	cout<<"Por favor, selecciona una opción válida \n";
-	    	cin>>menu1;
+	    	menu1 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
 		}
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de productos
 	    switch(menu1){
@@ -188,13 +192,11 @@ void menu2(){
 	    cout<<"2. Registro de ventas. \n";
 	    cout<<"3. Salir. \n";
 	    cout<<endl;
-	    cout<<"Por favor, ingresa una opción: ";
-	    cin>>menu2;
+	    menu2 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
 	    //Se valida que el programa no acepte otro número aparte de los que se permiten en el menú
 	    while (menu2<0||menu2>3){
 	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	cout<<"Por favor, selecciona una opción válida \n";
-	    	cin>>menu2;
+	    	menu2 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
 		}
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de ventas
 	    switch(menu2){
@@ -227,13 +229,11 @@ void menu3(){
 	    cout<<"2. Registro de devoluciones. \n";
 	    cout<<"3. Salir. \n";
 	    cout<<endl;
-	    cout<<"Por favor, ingresa una opción: ";
-	    cin>>menu3;
+	    menu3 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
 	    //Se valida aue el programa no acepte otro número aparte de los que se permiten en el menú
 	    while (menu3<0||menu3>3){
 	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	cout<<"Por favor, selecciona una opción válida \n";
-	    	cin>>menu3;
+	    	menu3 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
 		}
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de devoluciones
 	    switch(menu3){
@@ -252,3 +252,24 @@ void menu3(){
 	system ("cls");
 	system("color 4F");
 }
+	
+bool EsEntero(const string& str) {
+    stringstream ss(str);
+    int n;
+    return (ss >> n) && ss.eof();
+}
+
+int ObtenerEnteroValido(const string& mensaje) {
+    string entrada;
+    while (true) {
+        cout << mensaje;
+        cin >> entrada;
+
+        if (EsEntero(entrada)) {
+            return atoi(entrada.c_str()); // Utiliza atoi para convertir la entrada a un entero y lo devuelve
+        } else {
+            cout << "Entrada no válida. Por favor, ingrese un número entero." << endl;
+        }
+    }
+}
+
