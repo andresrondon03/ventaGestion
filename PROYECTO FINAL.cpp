@@ -1,19 +1,19 @@
 /*
-Los atributos de color están especificados con DOS dígitos hexadecimales (el primero
-corresponde al segundo plano; el segundo al primer plano). Los dígitos
+Los atributos de color estÃ¡n especificados con DOS dÃ­gitos hexadecimales (el primero
+corresponde al segundo plano; el segundo al primer plano). Los dÃ­gitos
 pueden coincidir con cualquiera de los siguientes valores:
     0 = Negro       8 = Gris
     1 = Azul        9 = Azul claro
     2 = Verde       A = Verde claro
     3 = Aguamarina  B = Aguamarina claro
     4 = Rojo        C = Rojo claro
-    5 = Púrpura     D = Púrpura claro
+    5 = PÃºrpura     D = PÃºrpura claro
     6 = Amarillo    E = Amarillo claro
     7 = Blanco      F = Blanco brillante
 */
 /*
 Programa: Proyecto final
-Autores: Andrés Felipe Rondón Lara - Andres Felipe Perez Motta - Andres Felipe Tovar Molina
+Autores: AndrÃ©s Felipe RondÃ³n Lara - Andres Felipe Perez Motta - Andres Felipe Tovar Molina
 Fecha: 27 de noviembre de 2023
 */
 
@@ -26,11 +26,11 @@ Fecha: 27 de noviembre de 2023
 
 using namespace std;
 
-//Se incluyen las funciones de los submenús
+//Se incluyen las funciones de los submenÃºs
 void menu1();
 void menu2();
 void menu3();
-//Incluimos funciones que utilizaremos para la ejecucuión del programa
+//Incluimos funciones que utilizaremos para la ejecucuiÃ³n del programa
 bool EsEntero(const string& str);
 int ObtenerEnteroValido(const string& mensaje);
 
@@ -42,97 +42,112 @@ int main(){
 	system("cls");//Limpia pantalla
 	int n;
 	//Se crea la portada del programa
-	system("color A");
-	cout<<"\t\t\tINVENTAVENTA\n";
+	system("color 6");
 	cout<<endl;
-	cout<<"\t\t                *****             \n";
-	cout<<"\t\t                *****             \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t     *****      *****     ******  \n";
-	cout<<"\t\t     *****      *****             \n";
-	cout<<"\t\t     *****      *****             \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t                *****      *****  \n";
-	cout<<"\t\t                *****      *****  \n";
-	cout<<"\t\t     ******     *****      *****  \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t     ***************************  \n";
-	cout<<"\t\t                *****             \n";
-	cout<<"\t\t                *****             \n";
+	cout<<"\t                            *****************              *****************                                  \n";
+	cout<<"\t                            *****************              *****************                                  \n";
+	cout<<"\t                            *****************              *****************                                  \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                                                                                              \n";
+	cout<<"\t ****    ****  ****       ***   *****  ************  ************  ************   ************  ************  \n";
+	cout<<"\t ****    ****  *****      ***   *****  ************  ************  ************   ****    ****  ************  \n";
+	cout<<"\t ****    ****  *** **     ***   *****  ****              ****      ****    ****   ****    ****  ****          \n";
+	cout<<"\t ****    ****  ***  **    ***   *****  ************      ****      ****    ****   ************  ************  \n";
+	cout<<"\t ****    ****  ***   **   ***   *****  ************      ****      ****    ****   **** ****     ************  \n";
+	cout<<"\t ****    ****  ***    **  ***   *****          ****      ****      ****    ****   ****  ****    ****          \n";
+	cout<<"\t ************  ***     ** ***   *****  ************      ****      ************   ****   ****   ************  \n";
+	cout<<"\t ************  ***      *****   *****  ************      ****      ************   ****    ****  ************  \n";
+	cout<<"\t                                                                                                              \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                ****************************************                                      \n";
+	cout<<"\t                                ****************************************                                      \n";
+	cout<<"\t                                ****************************************                                      \n";
 	cout<<endl;
-	n = ObtenerEnteroValido("\tPresione 0 para continuar\t");
+	system ("pause");
 	system("cls");
 	
-	// ¡¡¡Se inicia todo el programa!!!
+	// Â¡Â¡Â¡Se inicia todo el programa!!!
 	
-	//Se ejecuta el menú principal que vera el usuario en pantalla 
-	if (n==0) //¿Qué pasa si no es 0?
-	{
-		system("color 4F");
-		cout<<"\t\t¡¡¡Bienvenido a la gestión de tu emprendimiento!!!\n";
-	    cout<<endl;
-	    int menu;
-	    //Se ingresa el menú principal
-	    do{
-	    	cout<<"\t¿Que deseas hacer hoy?\n";
-			cout<<"1. Revisar tus productos\n";
-			cout<<"2. Ventas\n";
-			cout<<"3. Devoluciones\n";
-			cout<<"4. Salir\n"<<endl;
-			menu = ObtenerEnteroValido("Por favor, ingresa una opción: ");
-			cout<<endl<<endl;
-			cout<<"\t\tSiempre disponible para ayudarte :D\n";
-			//Se limitan las respuestas del usuario
-		    while (menu<0||menu>4){
-		    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-		    	menu = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
-			}
-			//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú principal
-			switch(menu){
-		    	case 1:
-		    		menu1();
-		    		break;
-		    	case 2:
-		    		menu2();
-		    		break;
-		    	case 3:
-		    		menu3();
-		    		break;
-			}
-			
-		}while (menu!=4);
-		system("cls");
-		system("color 6");
-		cout<<"\t\t¡¡¡Sigue así, vas por buen camino!!!\n";
-		cout<<endl;
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<"\t\t **************************** \n";
-		cout<<endl;
-		cout<<"\t\tNos vemos en una próxima ocasión, éxitos :D\n";
-		system("pause");
-	} else{
-		n = ObtenerEnteroValido("\tPresione 0 para continuar\t");
-	}
+	//Se ejecuta el menÃº principal que vera el usuario en pantalla 
+	system("color 4F");
+	cout<<"\t\t\t\tÂ¡Â¡Â¡Bienvenido a la gestiÃ³n de tu emprendimiento!!!\n";
+    cout<<endl;
+    int menu;
+    //Se ingresa el menÃº principal
+    do{
+    	cout<<"\t\tÂ¿Que deseas hacer hoy?\n";
+		cout<<"\t1. Revisar tus productos\n";
+		cout<<"\t2. Ventas\n";
+		cout<<"\t3. Devoluciones\n";
+		cout<<"\t4. Salir\n"<<endl;
+		menu = ObtenerEnteroValido("Por favor, ingresa una opciÃ³n: ");
+		cout<<endl<<endl;
+		cout<<"\t\tSiempre disponible para ayudarte :D\n";
+		//Se limitan las respuestas del usuario
+	    while (menu<0||menu>4){
+	    	cout<<"La opciÃ³n que seleccionaste no se encuentra en el menÃº \n";
+	    	menu = ObtenerEnteroValido("Por favor, selecciona una opciÃ³n vÃ¡lida \n");
+		}
+		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menÃº principal
+		switch(menu){
+	    	case 1:
+	    		menu1();
+	    		break;
+	    	case 2:
+	    		menu2();
+	    		break;
+	    	case 3:
+	    		menu3();
+	    		break;
+		}
+		
+	}while (menu!=4);
+	system("cls");
+	system("color 6");
+	cout<<"\t\t\t\t\tÂ¡Â¡Â¡Sigue asÃ­, vas por buen camino!!!\n";
+	cout<<endl;
+	cout<<"\t                            *****************              *****************                                  \n";
+	cout<<"\t                            *****************              *****************                                  \n";
+	cout<<"\t                            *****************              *****************                                  \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                                                                                              \n";
+	cout<<"\t ****    ****  ****       ***   *****  ************  ************  ************   ************  ************  \n";
+	cout<<"\t ****    ****  *****      ***   *****  ************  ************  ************   ****    ****  ************  \n";
+	cout<<"\t ****    ****  *** **     ***   *****  ****              ****      ****    ****   ****    ****  ****          \n";
+	cout<<"\t ****    ****  ***  **    ***   *****  ************      ****      ****    ****   ************  ************  \n";
+	cout<<"\t ****    ****  ***   **   ***   *****  ************      ****      ****    ****   **** ****     ************  \n";
+	cout<<"\t ****    ****  ***    **  ***   *****          ****      ****      ****    ****   ****  ****    ****          \n";
+	cout<<"\t ************  ***     ** ***   *****  ************      ****      ************   ****   ****   ************  \n";
+	cout<<"\t ************  ***      *****   *****  ************      ****      ************   ****    ****  ************  \n";
+	cout<<"\t                                                                                                              \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                *********                      *********                                      \n";
+	cout<<"\t                                ****************************************                                      \n";
+	cout<<"\t                                ****************************************                                      \n";
+	cout<<"\t                                ****************************************                                      \n";
+	cout<<endl;
+	cout<<"\t\t\t\tNos vemos en una prÃ³xima ocasiÃ³n, Ã©xitos :D\n";
+	system("pause");
+	system("cls");
+	cout<<"\t\t\tÂ¡Â¡Â¡ CrÃ©ditos del programa !!!\n"<<endl;
+	cout<<"\tAutores: AndrÃ©s Felipe RondÃ³n - Andres Felipe Perez - Andres Felipe Tovar\n"<<endl;
+	cout<<"\tIngenierÃ­a de sistemas\n"<<endl;
+	cout<<"\tProgramaciÃ³n BÃ¡sica 2023-3\n"<<endl;
+	system("pause");
 	return 0;
 }
+
 
 //Se desarrollan las funciones
 
@@ -141,37 +156,37 @@ void menu1(){
 	do{
 		system("cls");
 		system("color 3F");
-	    cout<<"\tTus productos \n"; //Se le pide al usuario una opción
+	    cout<<"\t\tTus productos \n"; //Se le pide al usuario una opciÃ³n
 	    cout<<endl;
-	    cout<<"1. Crear producto. \n";
-	    cout<<"2. Listar los productos. \n";
-	    cout<<"3. Añadir existencia a un producto. \n";
-	    cout<<"4. Salir. \n";
+	    cout<<"\t1. Crear producto. \n";
+	    cout<<"\t2. Listar los productos. \n";
+	    cout<<"\t3. AÃ±adir existencia a un producto. \n";
+	    cout<<"\t4. Salir. \n";
 	    cout<<endl;
-	    menu1 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
-	    //Se valida que el programa no acepte otro número aparte de los que se permiten en el menú
+	    menu1 = ObtenerEnteroValido("Por favor, ingresa una opciÃ³n: ");
+	    //Se valida que el programa no acepte otro nÃºmero aparte de los que se permiten en el menÃº
 	    while (menu1<0||menu1>4){
-	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu1 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	cout<<"La opciÃ³n que seleccionaste no se encuentra en el menÃº \n";
+	    	menu1 = ObtenerEnteroValido("Por favor, selecciona una opciÃ³n vÃ¡lida \n");
 		}
-		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de productos
+		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menÃº de productos
 	    switch(menu1){
 	    	case 1:
 	    		system ("color ");
 	    		system ("cls");
-	    		cout<<"\n¡¡Crear producto!! \n";
+	    		cout<<"\t\tÂ¡Â¡Crear producto!! \n";
 	    		break;
 	    	case 2:
 	    		system ("color ");
 	    		system ("cls");
-	    		cout<<"\n¡¡Listar los productos!! \n";
+	    		cout<<"\t\tÂ¡Â¡Listar los productos!! \n";
 	    		
 	    		cout<<endl;
 	    		break;
 	    	case 3:
 	    		system ("color ");
 	    		system ("cls");
-	    		cout<<"\n¡¡Añadir existencia a un producto!! \n";
+	    		cout<<"\t\tÂ¡Â¡AÃ±adir existencia a un producto!! \n";
 	    		
 	    		cout<<endl;
 	    		break;
@@ -186,29 +201,29 @@ void menu2(){
 	do{
 		system("cls");
 		system("color 3F");
-	    cout<<"\t¡¡Ventas!! \n"; //Se le pide al usuario una opción
+	    cout<<"\t\tÂ¡Â¡Ventas!! \n"; //Se le pide al usuario una opciÃ³n
 	    cout<<endl;
-	    cout<<"1. Registrar una nueva venta. \n";
-	    cout<<"2. Registro de ventas. \n";
-	    cout<<"3. Salir. \n";
+	    cout<<"\t1. Registrar una nueva venta. \n";
+	    cout<<"\t2. Registro de ventas. \n";
+	    cout<<"\t3. Salir. \n";
 	    cout<<endl;
-	    menu2 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
-	    //Se valida que el programa no acepte otro número aparte de los que se permiten en el menú
+	    menu2 = ObtenerEnteroValido("Por favor, ingresa una opciÃ³n: ");
+	    //Se valida que el programa no acepte otro nÃºmero aparte de los que se permiten en el menÃº
 	    while (menu2<0||menu2>3){
-	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu2 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	cout<<"La opciÃ³n que seleccionaste no se encuentra en el menÃº \n";
+	    	menu2 = ObtenerEnteroValido("Por favor, selecciona una opciÃ³n vÃ¡lida \n");
 		}
-		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de ventas
+		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menÃº de ventas
 	    switch(menu2){
 	    	case 1:
 	    		system ("color ");
 	    		system ("cls");
-	    		cout<<"\n!!Registrar una nueva venta!! \n";
+	    		cout<<"\t\t!!Registrar una nueva venta!! \n";
 	    		break;
 	    	case 2:
 	    		system ("color ");
 	    		system ("cls");
-	    		cout<<"\n¡¡Registro de ventas!! \n";
+	    		cout<<"\t\tÂ¡Â¡Registro de ventas!! \n";
 	    		
 	    		cout<<endl;
 	    		break;
@@ -223,29 +238,29 @@ void menu3(){
 	do{
 		system ("cls");
 		system("color 3F");
-	    cout<<"\t¡¡Devoluciones!! \n"; //Se le pide al usuario una opción
+	    cout<<"\t\tÂ¡Â¡Devoluciones!! \n"; //Se le pide al usuario una opciÃ³n
 	    cout<<endl;
-	    cout<<"1. Registrar una devolución. \n";
-	    cout<<"2. Registro de devoluciones. \n";
-	    cout<<"3. Salir. \n";
+	    cout<<"\t1. Registrar una devoluciÃ³n. \n";
+	    cout<<"\t2. Registro de devoluciones. \n";
+	    cout<<"\t3. Salir. \n";
 	    cout<<endl;
-	    menu3 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
-	    //Se valida aue el programa no acepte otro número aparte de los que se permiten en el menú
+	    menu3 = ObtenerEnteroValido("Por favor, ingresa una opciÃ³n: ");
+	    //Se valida aue el programa no acepte otro nÃºmero aparte de los que se permiten en el menÃº
 	    while (menu3<0||menu3>3){
-	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu3 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	cout<<"La opciÃ³n que seleccionaste no se encuentra en el menÃº \n";
+	    	menu3 = ObtenerEnteroValido("Por favor, selecciona una opciÃ³n vÃ¡lida \n");
 		}
-		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de devoluciones
+		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menÃº de devoluciones
 	    switch(menu3){
 	    	case 1:
 	    		system ("color ");
 	    		system ("cls");
-	    		cout<<"\n!!Registrar una devolución!! \n";
+	    		cout<<"\t\t!!Registrar una devoluciÃ³n!! \n";
 	    		break;
 	    	case 2:
 	    		system ("color ");
 	    		system ("cls");
-	    		cout<<"\n¡¡Registro de devoluciones!! \n";
+	    		cout<<"\t\tÂ¡Â¡Registro de devoluciones!! \n";
 	    		break;
 		}
 	}while(menu3!=3);
@@ -268,8 +283,7 @@ int ObtenerEnteroValido(const string& mensaje) {
         if (EsEntero(entrada)) {
             return atoi(entrada.c_str()); // Utiliza atoi para convertir la entrada a un entero y lo devuelve
         } else {
-            cout << "Entrada no válida. Por favor, ingrese un número entero." << endl;
+            cout << "Entrada no vÃ¡lida. Por favor, ingrese un nÃºmero entero." << endl;
         }
     }
 }
-
