@@ -34,7 +34,7 @@ void menu3();
 bool EsEntero(const string& str);
 int ObtenerEnteroValido(const string& mensaje);
 
-
+//prueba
 
 int main(){
 	//Esta orden permite los caracteres especiales
