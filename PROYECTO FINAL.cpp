@@ -15,7 +15,7 @@ using namespace std;
 
 //Struct para registrar los productos
 struct tienda{
-	string Codigo;
+	int Codigo;
 	string Nombre;
 	int Valor;
 	int Cantidad;
@@ -44,7 +44,7 @@ struct devolu{
 void unistore();
 bool esEntero(const string& str);
 int obtenerEnteroValido(const string& mensaje);
-void creaProduc(tienda* articulos, int contador);
+int creaProduc(tienda* articulos, int contador);
 void printProduc(tienda* articulos, int contador);
 void addExist(tienda* articulos, int contador);
 //Se incluyen las funciones de los submenús
@@ -146,7 +146,7 @@ void menu1(tienda* articulos, int contador){
 	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Crear producto!! \n"<<endl;
-	    		creaProduc( articulos, contador);
+	    		contador= creaProduc( articulos, contador);
 	    		cout<<endl;
 	    		break;
 	    	case 2:
@@ -265,16 +265,21 @@ void menu3(){
 }
 
 //crea un nuevo producto
-void creaProduc(tienda* articulos, int contador){
+int creaProduc(tienda* articulos, int contador){
 	while(true){
 		tienda produ;
 		cout << "Por favor ingrese la información del producto: " << endl;
-	    cin.ignore(); // Limpia el búfer de entrada
-	    cout << "Código: ";
-	    getline(cin, produ.Codigo);
-	    
-	    //Revisar que el codigo ya exista
-	    
+	    produ.Codigo = obtenerEnteroValido("Código (número): ");
+	    while(produ.Codigo <0){
+	        produ.Codigo = obtenerEnteroValido("Ingrese un código válido: ");
+		}
+		//Revisar que el codigo ya exista
+	    for (int i = 0; i < contador; i++) {
+    		while( articulos[i].Codigo == produ.Codigo){
+		        produ.Codigo = obtenerEnteroValido("El código ya está en uso. Por favor ingrese otro código: ");
+			}
+		}
+		cin.ignore(); // Limpia el búfer de entrada
 		cout << "Nombre: ";
 	    getline(cin, produ.Nombre);
 	    produ.Valor = obtenerEnteroValido("Valor unitario: ");
@@ -295,31 +300,39 @@ void creaProduc(tienda* articulos, int contador){
             break;
         }
 	}
+	return contador;
 }
 
 //lista los productos ingresados
 void printProduc(tienda* articulos, int contador){
-    cout << "Los productos guardados son:\n";
-    for (int i = 0; i < contador; i++) {
-        cout << "\tCódigo: " << articulos[i].Codigo << endl << "\tNombre: " << articulos[i].Nombre << endl << "\tValor unitario: " << articulos[i].Valor << endl << "Existencias: " << articulos[i].Cantidad<< endl;
-    }
+	if(contador == 0){
+		cout<<"No hay productos guardados."<< endl;
+	}else{
+	    cout << "Los productos guardados son:\n";
+	    for (int i = 0; i < contador; i++) {
+	    	cout<< endl;
+	        cout << "\tCódigo: " << articulos[i].Codigo << endl << "\tNombre: " << articulos[i].Nombre << endl << "\tValor unitario: " << articulos[i].Valor << endl << "\tExistencias: " << articulos[i].Cantidad<< endl;
+	    	cout<< endl;
+		}
+	}
 }
 
-void addExist(tienda* articulos, int contador){
-	string cod;
+void addExist(tienda* articulos, int contador){  //revisar función
+	int cod;
 	int nuevos;
-    cout << "Ingrese el código del producto al que agregar existencias: "<<endl;
-    getline(cin, cod);
+    cod = obtenerEnteroValido("Ingrese el código del producto al que agregar existencias: ");
     for (int i = 0; i < contador; i++) {
     	if( articulos[i].Codigo == cod){
     		cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad <<" existencias." << endl;
     		nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar?");
     		while(nuevos<0){
     			cout<<"Cantidad incorrecta, solo se admiten valores positivos"<< endl;
-    			nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar?");
+    			nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar?\n");
+    			cout<< endl;
+    			articulos[i].Cantidad += nuevos;
 			}
 		} else{
-			cout << "El código ingresado no está asociado a ningún producto."<<endl;
+			cout << "El código ingresado no está asociado a ningún producto. "<<endl;
 		}
     }
 }
