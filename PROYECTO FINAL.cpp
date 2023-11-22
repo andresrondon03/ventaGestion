@@ -26,21 +26,13 @@ Fecha: 27 de noviembre de 2023
 
 using namespace std;
 
-//Se incluyen las funciones de los submenús
-void menu1();
-void menu2();
-void menu3();
-
-
-//Incluimos funciones que utilizaremos para la ejecucuión del programa
-void unistore();
-bool EsEntero(const string& str);
-int ObtenerEnteroValido(const string& mensaje);
-
 //Struct para registrar los productos
 struct tienda{
-	
-}produ;
+	string Codigo;
+	string Nombre;
+	int Valor;
+	int Cantidad;
+};
 
 //Struct para registar las ventas
 struct venta{
@@ -57,6 +49,21 @@ struct devolu{
 	
 }menos;
 
+
+
+
+
+//Incluimos funciones que utilizaremos para la ejecucuión del programa
+void unistore();
+bool esEntero(const string& str);
+int obtenerEnteroValido(const string& mensaje);
+void creaProduc(tienda* articulos, int contador);
+
+//Se incluyen las funciones de los submenús
+void menu1(tienda* articulos, int contador);
+void menu2();
+void menu3();
+
 // <<------------------------- Inicio del programa ------------------------->> 
 int main(){
 	//Esta orden permite los caracteres especiales
@@ -71,6 +78,9 @@ int main(){
 	
 	// ¡¡¡Se inicia todo el programa!!!
 	
+	//creamos un arreglo para los productos de la tienda
+	tienda* articulos = new tienda[100];
+    int contador = 0;
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
 	system("color 4F");
 	cout<<"\t\t\t\t¡¡¡Bienvenido a la gestión de tu emprendimiento!!!\n";
@@ -83,18 +93,18 @@ int main(){
 		cout<<"\t2. Ventas\n";
 		cout<<"\t3. Devoluciones\n";
 		cout<<"\t4. Salir\n"<<endl;
-		menu = ObtenerEnteroValido("Por favor, ingresa una opción: ");
+		menu = obtenerEnteroValido("Por favor, ingresa una opción: ");
 		cout<<endl<<endl;
 		//Se limitan las respuestas del usuario
 	    while (menu<0||menu>4){
 	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	menu = obtenerEnteroValido("Por favor, selecciona una opción válida \n");
 		}
 		cout<<"\t\tSiempre disponible para ayudarte :D\n";
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú principal
 		switch(menu){
 	    	case 1:
-	    		menu1();
+	    		menu1(articulos, contador);
 	    		break;
 	    	case 2:
 	    		menu2();
@@ -124,7 +134,7 @@ int main(){
 //Se desarrollan las funciones
 
 //Submenú 1
-void menu1(){
+void menu1(tienda* articulos, int contador){
 	int menu1;
 	do{
 		system("cls");
@@ -136,11 +146,11 @@ void menu1(){
 	    cout<<"\t3. Añadir existencia a un producto. \n";
 	    cout<<"\t4. Salir. \n";
 	    cout<<endl;
-	    menu1 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
+	    menu1 = obtenerEnteroValido("Por favor, ingresa una opción: ");
 	    //Se valida que el programa no acepte otro número aparte de los que se permiten en el menú
 	    while (menu1<0||menu1>4){
 	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu1 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	menu1 = obtenerEnteroValido("Por favor, selecciona una opción válida \n");
 		}
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de productos
 	    switch(menu1){
@@ -148,7 +158,7 @@ void menu1(){
 	    		system ("color 7A");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Crear producto!! \n"<<endl;
-	    		
+	    		creaProduc( articulos, contador);
 	    		cout<<endl;
 	    		break;
 	    	case 2:
@@ -184,11 +194,11 @@ void menu2(){
 	    cout<<"\t3. Registro de ventas. \n";
 	    cout<<"\t4. Salir. \n";
 	    cout<<endl;
-	    menu2 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
+	    menu2 = obtenerEnteroValido("Por favor, ingresa una opción: ");
 	    //Se valida que el programa no acepte otro número aparte de los que se permiten en el menú
 	    while (menu2<0||menu2>4){
 	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu2 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	menu2 = obtenerEnteroValido("Por favor, selecciona una opción válida \n");
 		}
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de ventas
 	    switch(menu2){
@@ -231,11 +241,11 @@ void menu3(){
 	    cout<<"\t2. Registro de devoluciones. \n";
 	    cout<<"\t3. Salir. \n";
 	    cout<<endl;
-	    menu3 = ObtenerEnteroValido("Por favor, ingresa una opción: ");
+	    menu3 = obtenerEnteroValido("Por favor, ingresa una opción: ");
 	    //Se valida aue el programa no acepte otro número aparte de los que se permiten en el menú
 	    while (menu3<0||menu3>3){
 	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu3 = ObtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	menu3 = obtenerEnteroValido("Por favor, selecciona una opción válida \n");
 		}
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de devoluciones
 	    switch(menu3){
@@ -254,20 +264,53 @@ void menu3(){
 	system ("cls");
 	system("color 4F");
 }
+
+//crea un nuevo producto
+void creaProduc(tienda* articulos, int contador){
+	while(true){
+		tienda produ;
+		cout << "Por favor ingrese la información del producto: " << endl;
+	    cin.ignore(); // Limpia el búfer de entrada
+	    cout << "Código: ";
+	    getline(cin, produ.Codigo);
+	    cout << "Nombre: ";
+	    getline(cin, produ.Nombre);
+	    cout << "Valor unitario: ";
+	    cin >> produ.Valor;
+	    while (produ.Valor < 0) {
+	        cout << "Ingrese un valor unitario válido: ";
+	        cin >> produ.Valor;
+	    }
+	    cout << "Existencias: ";
+	    cin >> produ.Cantidad;
+	    cin.ignore(); // Limpia el búfer de entrada
+	    while (produ.Cantidad < 0) {
+	        cout << "Ingrese una catidad de existencias válida: ";
+	        cin >> produ.Cantidad;
+	    }
+	    articulos[contador] = produ;
+	    contador++;
+	    
+	    int continuar = obtenerEnteroValido("¿Desea agregar otro producto? (cualquier número para sí, 0 para no): ");
+
+        if (continuar == 0) {
+            break;
+        }
+	}
+}
 	
-bool EsEntero(const string& str) {
-    stringstream ss(str);
+bool esEntero(const string& str) {
+    stringstream ss(str); // Un stringstream se utiliza para operar en cadenas como si fueran flujos de entrada/salida.
     int n;
-    return (ss >> n) && ss.eof();
+    return (ss >> n) && ss.eof(); //Esto será verdadero si se pudo extraer un número entero de la cadena str y no hay nada más después del número.
 }
 
-int ObtenerEnteroValido(const string& mensaje) {
+int obtenerEnteroValido(const string& mensaje) {
     string entrada;
     while (true) {
         cout << mensaje;
         cin >> entrada;
-
-        if (EsEntero(entrada)) {
+        if (esEntero(entrada)) {
             return atoi(entrada.c_str()); // Utiliza atoi para convertir la entrada a un entero y lo devuelve
         } else {
             cout << "Entrada no válida. Por favor, ingrese un número entero." << endl;
@@ -303,3 +346,5 @@ void unistore(){
 	cout<<"\t                                ****************************************                                      \n";
 	cout<<endl;
 }
+
+
