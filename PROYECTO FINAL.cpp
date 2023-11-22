@@ -318,19 +318,23 @@ void printProduc(tienda* articulos, int contador){
 void addExist(tienda* articulos, int contador){  //revisar función
 	int cod;
 	int nuevos;
-    cod = obtenerEnteroValido("Ingrese el código del producto al que agregar existencias: ");
-    for (int i = 0; i < contador; i++) {
-    	if( articulos[i].Codigo == cod){
-    		cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad <<" existencias." << endl;
-    		nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar? \n");
-    		while(nuevos<0){
-    			cout<<"Cantidad incorrecta, solo se admiten valores positivos"<< endl; //Se verifican que no ingrese números negativos
-    			nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar?\n");
-    			cout<< endl;
-    			articulos[i].Cantidad += nuevos;
+	if(contador == 0){
+		cout<<"No hay productos guardados."<< endl;
+	}else{
+    	cod = obtenerEnteroValido("Ingrese el código del producto al que agregar existencias: ");
+	    for (int i = 0; i < contador; i++) {
+	    	if( articulos[i].Codigo == cod){
+	    		cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad <<" existencias." << endl;
+	    		nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar? \n");
+	    		while(nuevos<0){
+	    			cout<<"Cantidad incorrecta, solo se admiten valores positivos"<< endl; //Se verifican que no ingrese números negativos
+	    			nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar?\n");
+	    			cout<< endl;
+	    			articulos[i].Cantidad += nuevos;
+				}
+			} else{
+				cout << "El código ingresado no está asociado a ningún producto. "<<endl;
 			}
-		} else{
-			cout << "El código ingresado no está asociado a ningún producto. "<<endl;
 		}
     }
 }
