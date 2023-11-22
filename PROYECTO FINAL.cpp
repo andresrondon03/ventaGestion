@@ -1,17 +1,4 @@
 /*
-Los atributos de color están especificados con DOS dígitos hexadecimales (el primero
-corresponde al segundo plano; el segundo al primer plano). Los dígitos
-pueden coincidir con cualquiera de los siguientes valores:
-    0 = Negro       8 = Gris
-    1 = Azul        9 = Azul claro
-    2 = Verde       A = Verde claro
-    3 = Aguamarina  B = Aguamarina claro
-    4 = Rojo        C = Rojo claro
-    5 = Púrpura     D = Púrpura claro
-    6 = Amarillo    E = Amarillo claro
-    7 = Blanco      F = Blanco brillante
-*/
-/*
 Programa: Proyecto final - Sistema de gestión de inventario y ventas 
 Autores: Andrés Felipe Rondón Lara - Andres Felipe Perez Motta - Andres Felipe Tovar Molina
 Fecha: 27 de noviembre de 2023
@@ -79,7 +66,7 @@ int main(){
 	
 	// ¡¡¡Se inicia todo el programa!!!
 	
-	//creamos un arreglo para los productos de la tienda
+	//Creamos un arreglo para los productos de la tienda
 	tienda* articulos = new tienda[100];
     int contador = 0;
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
@@ -89,7 +76,7 @@ int main(){
     int menu;
     //Se ingresa el menú principal
     do{
-    	cout<<"¿Que deseas hacer hoy?\n";
+    	cout<<"\t\t¿Que deseas hacer hoy?\n";
 		cout<<"\t1. Revisar tus productos\n";
 		cout<<"\t2. Ventas\n";
 		cout<<"\t3. Devoluciones\n";
@@ -124,7 +111,7 @@ int main(){
 	system("pause");
 	system("cls");
 	cout<<"\t\t\t¡¡¡ Créditos del programa !!!\n"<<endl;
-	cout<<"\tAutores: Andrés Felipe Rondón - Andres Felipe Perez - Andres Felipe Tovar\n"<<endl;
+	cout<<"\tAutores: Andrés Felipe Rondón - Andrés Felipe Perez - Andrés Felipe Tovar\n"<<endl;
 	cout<<"\tIngeniería de sistemas\n"<<endl;
 	cout<<"\tProgramación Básica 2023-3\n"<<endl;
 	system("pause");
@@ -132,7 +119,7 @@ int main(){
 }
 
 
-//Se desarrollan las funciones
+//<<-----------------------------------------Se desarrollan las funciones------------------------------------------------------------>>
 
 //Submenú 1
 void menu1(tienda* articulos, int contador){
@@ -156,25 +143,27 @@ void menu1(tienda* articulos, int contador){
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de productos
 	    switch(menu1){
 	    	case 1:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Crear producto!! \n"<<endl;
 	    		creaProduc( articulos, contador);
 	    		cout<<endl;
 	    		break;
 	    	case 2:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Listar los productos!! \n" <<endl;
 	    		printProduc( articulos, contador);
 	    		cout<<endl;
+	    		system("pause");
 	    		break;
 	    	case 3:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Añadir existencia a un producto!! \n";
 	    		addExist( articulos, contador);
 	    		cout<<endl;
+	    		system("pause");
 	    		break;
 		}
 	}while (menu1!=4);
@@ -204,24 +193,27 @@ void menu2(){
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de ventas
 	    switch(menu2){
 	    	case 1:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t!!Registrar una nueva venta!! \n";
 	    		
+	    		system("pause");
 	    		cout<<endl;
 	    		break;
 	    	case 2:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Registrar un nuevo cliente!! \n";
 	    		
+	    		system("pause");
 	    		cout<<endl;
 	    		break;
 	    	case 3:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Registro de ventas!! \n";
 	    		
+	    		system("pause");
 	    		cout<<endl;
 	    		break;	
 		}
@@ -251,14 +243,20 @@ void menu3(){
 		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú de devoluciones
 	    switch(menu3){
 	    	case 1:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t!!Registrar una devolución!! \n";
+	    		
+	    		cout<<endl;
+	    		system("pause");
 	    		break;
 	    	case 2:
-	    		system ("color 7A");
+	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Registro de devoluciones!! \n";
+	    		
+	    		cout<<endl;
+	    		system("pause");
 	    		break;
 		}
 	}while(menu3!=3);
@@ -274,7 +272,10 @@ void creaProduc(tienda* articulos, int contador){
 	    cin.ignore(); // Limpia el búfer de entrada
 	    cout << "Código: ";
 	    getline(cin, produ.Codigo);
-	    cout << "Nombre: ";
+	    
+	    //Revisar que el codigo ya exista
+	    
+		cout << "Nombre: ";
 	    getline(cin, produ.Nombre);
 	    produ.Valor = obtenerEnteroValido("Valor unitario: ");
 	    while (produ.Valor < 0) {
@@ -289,7 +290,7 @@ void creaProduc(tienda* articulos, int contador){
 	    contador++;
 	    
 	    int continuar = obtenerEnteroValido("¿Desea agregar otro producto? (cualquier número para sí, 0 para no): ");
-
+		system("cls");
         if (continuar == 0) {
             break;
         }
@@ -300,7 +301,7 @@ void creaProduc(tienda* articulos, int contador){
 void printProduc(tienda* articulos, int contador){
     cout << "Los productos guardados son:\n";
     for (int i = 0; i < contador; i++) {
-            cout << "\tCódigo: " << articulos[i].Codigo << endl << "\tNombre: " << articulos[i].Nombre << endl << "\tValor unitario: " << articulos[i].Valor << endl << "Existencias: " << articulos[i].Cantidad<< endl;
+        cout << "\tCódigo: " << articulos[i].Codigo << endl << "\tNombre: " << articulos[i].Nombre << endl << "\tValor unitario: " << articulos[i].Valor << endl << "Existencias: " << articulos[i].Cantidad<< endl;
     }
 }
 
@@ -372,5 +373,3 @@ void unistore(){
 	cout<<"\t                                ****************************************                                      \n";
 	cout<<endl;
 }
-
-
