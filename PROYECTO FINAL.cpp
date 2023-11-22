@@ -58,7 +58,8 @@ void unistore();
 bool esEntero(const string& str);
 int obtenerEnteroValido(const string& mensaje);
 void creaProduc(tienda* articulos, int contador);
-
+void printProduc(tienda* articulos, int contador);
+void addExist(tienda* articulos, int contador);
 //Se incluyen las funciones de los submenús
 void menu1(tienda* articulos, int contador);
 void menu2();
@@ -164,15 +165,15 @@ void menu1(tienda* articulos, int contador){
 	    	case 2:
 	    		system ("color 7A");
 	    		system ("cls");
-	    		cout<<"\t\t¡¡Listar los productos!! \n";
-	    		
+	    		cout<<"\t\t¡¡Listar los productos!! \n" <<endl;
+	    		printProduc( articulos, contador);
 	    		cout<<endl;
 	    		break;
 	    	case 3:
 	    		system ("color 7A");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Añadir existencia a un producto!! \n";
-	    		
+	    		addExist( articulos, contador);
 	    		cout<<endl;
 	    		break;
 		}
@@ -275,18 +276,14 @@ void creaProduc(tienda* articulos, int contador){
 	    getline(cin, produ.Codigo);
 	    cout << "Nombre: ";
 	    getline(cin, produ.Nombre);
-	    cout << "Valor unitario: ";
-	    cin >> produ.Valor;
+	    produ.Valor = obtenerEnteroValido("Valor unitario: ");
 	    while (produ.Valor < 0) {
 	        cout << "Ingrese un valor unitario válido: ";
-	        cin >> produ.Valor;
+	        produ.Valor = obtenerEnteroValido("Ingrese un valor unitario válido: ");
 	    }
-	    cout << "Existencias: ";
-	    cin >> produ.Cantidad;
-	    cin.ignore(); // Limpia el búfer de entrada
+		produ.Cantidad = obtenerEnteroValido("Existencias: ");
 	    while (produ.Cantidad < 0) {
-	        cout << "Ingrese una catidad de existencias válida: ";
-	        cin >> produ.Cantidad;
+	        produ.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: ");
 	    }
 	    articulos[contador] = produ;
 	    contador++;
@@ -298,13 +295,42 @@ void creaProduc(tienda* articulos, int contador){
         }
 	}
 }
-	
+
+//lista los productos ingresados
+void printProduc(tienda* articulos, int contador){
+    cout << "Los productos guardados son:\n";
+    for (int i = 0; i < contador; i++) {
+            cout << "\tCódigo: " << articulos[i].Codigo << endl << "\tNombre: " << articulos[i].Nombre << endl << "\tValor unitario: " << articulos[i].Valor << endl << "Existencias: " << articulos[i].Cantidad<< endl;
+    }
+}
+
+void addExist(tienda* articulos, int contador){
+	string cod;
+	int nuevos;
+    cout << "Ingrese el código del producto al que agregar existencias: "<<endl;
+    getline(cin, cod);
+    for (int i = 0; i < contador; i++) {
+    	if( articulos[i].Codigo == cod){
+    		cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad <<" existencias." << endl;
+    		nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar?");
+    		while(nuevos<0){
+    			cout<<"Cantidad incorrecta, solo se admiten valores positivos"<< endl;
+    			nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaria agregar?");
+			}
+		} else{
+			cout << "El código ingresado no está asociado a ningún producto."<<endl;
+		}
+    }
+}
+
+//retorna true si el número ingresado es entero	
 bool esEntero(const string& str) {
     stringstream ss(str); // Un stringstream se utiliza para operar en cadenas como si fueran flujos de entrada/salida.
     int n;
     return (ss >> n) && ss.eof(); //Esto será verdadero si se pudo extraer un número entero de la cadena str y no hay nada más después del número.
 }
 
+//valida que la entrada por consola sea entero
 int obtenerEnteroValido(const string& mensaje) {
     string entrada;
     while (true) {
