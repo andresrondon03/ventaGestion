@@ -23,7 +23,10 @@ struct tienda{
 
 //Struct para registar las ventas
 struct venta{
-	
+	int Codigo;
+	string Nombre;
+	int Valor;
+	int Cantidad;	
 };
 
 //Struct para registar los clientes
@@ -33,7 +36,10 @@ struct cliente{
 
 //Struct para registrar las devoluciones
 struct devolu{
-	
+	int Codigo;
+	string Nombre;
+	int Valor;
+	int Cantidad;	
 };
 
 
@@ -49,10 +55,11 @@ void addExist(tienda* articulos, int contador);
 
 //Funciones para las ventas
 
+void printVenta(venta* moremo, int contador2);
 
 //Funciones para las devoluciones
 
-
+void printDevo(devolu* lessmo, int contador3);
 
 // <<------------------------------ Inicio del programa ----------------------------------->> 
 int main(){
@@ -72,7 +79,7 @@ int main(){
 	venta* moremo = new venta[200]; //moremo = more money = mas dinero
 	//Creamos un arreglo para las devoluciones de la tienda
 	devolu* lessmo = new devolu[100]; //lessmo = less money = menos dinero
-    int contador = 0;
+    int contador, contador2, contador3 = 0;
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
 	system("color 3F");
 	cout<<"\t\t\t\t¡¡¡Bienvenido a la gestión de tu emprendimiento!!!\n";
@@ -150,7 +157,7 @@ int main(){
 	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Registro de ventas!! \n";
-	    		
+	    		printVenta( moremo, contador2);
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -170,7 +177,7 @@ int main(){
 	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Registro de devoluciones!! \n";
-	    		
+	    		printDevo( lessmo, contador3);
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -307,12 +314,35 @@ void addExist(tienda* articulos, int contador) {
 
 
 //Funcion para imprimir en pantalla el total de ventas realizadas
-
+void printVenta(venta* moremo, int contador2){
+	if(contador2 == 0){
+		cout<<"No se han realizado ventas."<< endl;
+	}else{
+	    cout << "Se han realizado las siguientes ventas:\n";
+	    for (int i = 0; i < contador2; i++) {
+	    	cout<< endl;
+	        cout << "\tCódigo: " << moremo[i].Codigo << endl << "\tNombre: " << moremo[i].Nombre << endl << "\tValor unitario: " << moremo[i].Valor << endl << "\tExistencias: " << moremo[i].Cantidad<< endl; //Se imprimen los productos en pantalla
+	    	cout<< endl;
+		}
+	}
+}
 
 //Función para registrar una nueva devolción
 
 
 //Función para imprimir en pantalla el total de devoluciones realizadas
+void printDevo(devolu* lessmo, int contador3){
+	if(contador3 == 0){
+		cout<<"No hay devoluciones registradass."<< endl;
+	}else{
+	    cout << "Se han realizado las siguientes ventas:\n";
+	    for (int i = 0; i < contador3; i++) {
+	    	cout<< endl;
+	        cout << "\tCódigo: " << lessmo[i].Codigo << endl << "\tNombre: " << lessmo[i].Nombre << endl << "\tValor unitario: " << lessmo[i].Valor << endl << "\tExistencias: " << lessmo[i].Cantidad<< endl; //Se imprimen los productos en pantalla
+	    	cout<< endl;
+		}
+	}
+}
 
 //Función para la presentación del programa
 void unistore(){
