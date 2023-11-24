@@ -23,17 +23,26 @@ struct tienda{
 
 //Struct para registar las ventas
 struct venta{
-	
+	int Codigo;
+	string Nombre;
+	int Valor;
+	int Cantidad;	
 };
 
 //Struct para registar los clientes
 struct cliente{
-	
+	int NumIden;
+	string Nom;
+	string Ape;
+	string Correo;
 };
 
 //Struct para registrar las devoluciones
 struct devolu{
-	
+	int Codigo;
+	string Nombre;
+	int Valor;
+	int Cantidad;	
 };
 
 
@@ -48,9 +57,15 @@ void printProduc(tienda* articulos, int contador);
 void addExist(tienda* articulos, int contador);
 
 //Funciones para las ventas
-
+int nuevaVenta(tienda* articulos, int contador, venta* moremo, int contador2);
+void printVenta(venta* moremo, int contador2);
 
 //Funciones para las devoluciones
+
+void printDevo(devolu* lessmo, int contador3);
+
+//Función para la informacion de los clientes
+int addClien(cliente* people, int contador4);
 
 
 
@@ -69,10 +84,12 @@ int main(){
 	//Creamos un arreglo para los productos de la tienda
 	tienda* articulos = new tienda[100];
 	//Creamos un arreglo para las ventas de la tienda
-	venta* moremo = new venta[200]; //moremo = more money = mas dinero
+	venta* moremo = new venta[300]; //moremo = more money = mas dinero
 	//Creamos un arreglo para las devoluciones de la tienda
 	devolu* lessmo = new devolu[100]; //lessmo = less money = menos dinero
-    int contador = 0;
+	//Creamos un arreglo para los clientes de la tienda
+	cliente* people = new cliente[200];
+    int contador, contador2, contador3, contador4 = 0;
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
 	system("color 3F");
 	cout<<"\t\t\t\t¡¡¡Bienvenido a la gestión de tu emprendimiento!!!\n";
@@ -140,7 +157,7 @@ int main(){
 	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t!!Registrar una nueva venta!! \n";
-	    		
+	    		nuevaVenta( articulos, contador, moremo, contador2);
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -150,7 +167,7 @@ int main(){
 	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Registro de ventas!! \n";
-	    		
+	    		printVenta( moremo, contador2);
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -170,7 +187,7 @@ int main(){
 	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t¡¡Registro de devoluciones!! \n";
-	    		
+	    		printDevo( lessmo, contador3);
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -303,16 +320,119 @@ void addExist(tienda* articulos, int contador) {
     cout << "El código ingresado no está asociado a ningún producto." << endl;
 }
 
-//Fución para registrar una nueva venta y un posible nuevo cliente
+//Función para registrar un nuevo cliente
+int addClien(cliente* people, int contador4){
+	cliente person;
+	cout<<"Por favor, ingrese la información de la persona"<<endl;
+	person.NumIden=ObtenerValorValido("Número de identificación (CC o TI): ");
+	while (person.NumIden<0){
+		person.NumIden=ObtenerValorValido("Ingrese un número de identificación válido: ");
+	}
+	//Revisar si la cédula ya exista
+	for (int i=0; i<contador4; i++){
+		while (people[i].NumIden==person.NumIden){
+			person.NumIden=ObtenerValorValido("El número de identificación ya esta registrado. Por favor, ingrese uno nuevo: ");
+		}
+	}
+	cin.ignore(); // Limpia el búfer de entrada
+	cout << "Nombre: ";
+	getline(cin, person.Nom);
+	while (person.Nom.empty()) {
+            cout << "Debe ingresar un nombre." << endl;
+            cout << "Nombre: ";
+            getline(cin, person.Nom);
+    }
+    cin.ignore(); // Limpia el búfer de entrada
+	cout << "Apellido: ";
+	getline(cin, person.Ape);
+	while (person.Ape.empty()) {
+            cout << "Debe ingresar un apellido." << endl;
+            cout << "Apellido: ";
+            getline(cin, person.Ape);
+    }
+    cin.ignore(); // Limpia el búfer de entrada
+	cout << "Correo electronico: ";
+	getline(cin, person.Correo);
+	while (person.Correo.empty()) {
+            cout << "Debe ingresar un correo electronico." << endl;
+            cout << "Correo electronico: ";
+            getline(cin, person.Correo);
+    }
+}
 
+//Función para registrar una nueva venta
+int nuevaVenta(tienda* articulos, int contador, venta* moremo, int contador2){
+	tienda produ;
+	venta compra;
+	cliente people;
+	cout << "Por favor ingrese la información de la venta: " << endl;
+    produ.Codigo = obtenerEnteroValido("Código del producto (número): ");
+    while(produ.Codigo <0){
+        produ.Codigo = obtenerEnteroValido("Ingrese un código válido: "); //Se verifican que no ingrese números negativos
+	}
+	//Revisar que el codigo este asociado a un producto
+    for (int i = 0; i < contador; i++) {
+		if( articulos[i].Codigo == produ.Codigo){
+			cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad << " existencias." << endl;
+			compra.Cantidad = obtenerEnteroValido("Ingrese las unidades por vender: ");
+			while (compra.Cantidad < 0) {
+        		compra.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
+    		}
+    		while (articulos[i].Cantidad - compra.Cantidad < 0) {//Se verifica que no sobrepase la cantidad de unidades del producto
+        		compra.Cantidad = obtenerEnteroValido("La cantidad ingresada supera las existencias del producto.\nIngrese una cantidad válida: "); 
+    			while (compra.Cantidad < 0) {
+	        		compra.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
+	    		}
+			}
+			
+			//actualizamos la información del producto vendido
+			articulos[i].Cantidad -= compra.Cantidad;
+			compra.Nombre = articulos[i].Nombre; 
+			compra.Valor = articulos[i].Valor * compra.Cantidad;
+			compra.Codigo = contador2;
+			
+			cout << "Se vendieron " << compra.Cantidad << " unidades de " << compra.Nombre << ", por un valor de " << compra.Valor << endl;
+			
+			moremo[contador2] = compra;
+    		contador2++;
+    		
+    		return contador2;
+		} 	
+	}
+	cout << "El código ingresado no está asociado a ningún producto." << endl;
+	return contador2;
+}
 
 //Funcion para imprimir en pantalla el total de ventas realizadas
+void printVenta(venta* moremo, int contador2){
+	if(contador2 == 0){
+		cout<<"No se han realizado ventas."<< endl;
+	}else{
+	    cout << "Se han realizado las siguientes ventas:\n";
+	    for (int i = 0; i < contador2; i++) {
+	    	cout<< endl;
+	        cout << "\tCódigo: " << moremo[i].Codigo << endl << "\tNombre: " << moremo[i].Nombre << endl << "\tValor unitario: " << moremo[i].Valor << endl << "\tExistencias: " << moremo[i].Cantidad<< endl; //Se imprimen los productos en pantalla
+	    	cout<< endl;
+		}
+	}
+}
 
-
-//Función para registrar una nueva devolción
+//Función para registrar una nueva devolución
 
 
 //Función para imprimir en pantalla el total de devoluciones realizadas
+void printDevo(devolu* lessmo, int contador3){
+	if(contador3 == 0){
+		cout<<"No hay devoluciones registradas."<< endl;
+	}else{
+	    cout << "Se han realizado las siguientes ventas:\n";
+	    for (int i = 0; i < contador3; i++) {
+	    	cout<< endl;
+	        cout << "\tCódigo: " << lessmo[i].Codigo << endl << "\tNombre: " << lessmo[i].Nombre << endl << "\tValor unitario: " << lessmo[i].Valor << endl << "\tExistencias: " << lessmo[i].Cantidad<< endl; //Se imprimen los productos en pantalla
+	    	cout<< endl;
+		}
+	}
+}
 
 //Función para la presentación del programa
 void unistore(){
