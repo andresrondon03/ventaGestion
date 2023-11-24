@@ -324,14 +324,14 @@ void addExist(tienda* articulos, int contador) {
 int addClien(cliente* people, int contador4){
 	cliente person;
 	cout<<"Por favor, ingrese la información de la persona"<<endl;
-	person.NumIden=ObtenerValorValido("Número de identificación (CC o TI): ");
+	person.NumIden=obtenerEnteroValido("Número de identificación (CC o TI): ");
 	while (person.NumIden<0){
-		person.NumIden=ObtenerValorValido("Ingrese un número de identificación válido: ");
+		person.NumIden=obtenerEnteroValido("Ingrese un número de identificación válido: ");
 	}
 	//Revisar si la cédula ya exista
 	for (int i=0; i<contador4; i++){
 		while (people[i].NumIden==person.NumIden){
-			person.NumIden=ObtenerValorValido("El número de identificación ya esta registrado. Por favor, ingrese uno nuevo: ");
+			person.NumIden=obtenerEnteroValido("El número de identificación ya esta registrado. Por favor, ingrese uno nuevo: ");
 		}
 	}
 	cin.ignore(); // Limpia el búfer de entrada
