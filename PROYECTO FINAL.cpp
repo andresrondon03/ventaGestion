@@ -24,31 +24,35 @@ struct tienda{
 //Struct para registar las ventas
 struct venta{
 	
-}mas;
+};
 
 //Struct para registar los clientes
 struct cliente{
 	
-}people;
+};
 
 //Struct para registrar las devoluciones
 struct devolu{
 	
-}menos;
-
+};
 
 
 //Incluimos funciones que utilizaremos para la ejecucuión del programa
 void unistore();
 bool esEntero(const string& str);
 int obtenerEnteroValido(const string& mensaje);
+
+//Funciones para los productos
 int creaProduc(tienda* articulos, int contador);
 void printProduc(tienda* articulos, int contador);
 void addExist(tienda* articulos, int contador);
-//Se incluyen las funciones de los submenús
-void menu1(tienda* articulos, int contador);
-void menu2();
-void menu3();
+
+//Funciones para las ventas
+
+
+//Funciones para las devoluciones
+
+
 
 // <<------------------------------ Inicio del programa ----------------------------------->> 
 int main(){
@@ -64,6 +68,10 @@ int main(){
 	
 	//Creamos un arreglo para los productos de la tienda
 	tienda* articulos = new tienda[100];
+	//Creamos un arreglo para las ventas de la tienda
+	venta* moremo = new venta[200]; //moremo = more money = mas dinero
+	//Creamos un arreglo para las devoluciones de la tienda
+	devolu* lessmo = new devolu[100]; //lessmo = less money = menos dinero
     int contador = 0;
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
 	system("color 3F");
@@ -190,6 +198,26 @@ int main(){
 
 //<<-----------------------------------------Se desarrollan las funciones------------------------------------------------------------>>
 
+//Función que retorna true si el número ingresado es entero	
+bool esEntero(const string& str) {
+    stringstream ss(str); // Un stringstream se utiliza para operar en cadenas como si fueran flujos de entrada/salida.
+    int n;
+    return (ss >> n) && ss.eof(); //Esto será verdadero si se pudo extraer un número entero de la cadena str y no hay nada más después del número.
+}
+
+//Función para validar que la entrada por consola sea entero
+int obtenerEnteroValido(const string& mensaje) {
+    string entrada;
+    while (true) {
+        cout << mensaje;
+        cin >> entrada;
+        if (esEntero(entrada)) {
+            return atoi(entrada.c_str()); // Utiliza atoi para convertir la entrada a un entero y lo devuelve
+        } else {
+            cout << "Entrada no válida. Por favor, ingrese un número entero." << endl;
+        }
+    }
+}
 
 //Función que crea un nuevo producto
 int creaProduc(tienda* articulos, int contador){
@@ -275,29 +303,16 @@ void addExist(tienda* articulos, int contador) {
     cout << "El código ingresado no está asociado a ningún producto." << endl;
 }
 
-
-//Función que retorna true si el número ingresado es entero	
-bool esEntero(const string& str) {
-    stringstream ss(str); // Un stringstream se utiliza para operar en cadenas como si fueran flujos de entrada/salida.
-    int n;
-    return (ss >> n) && ss.eof(); //Esto será verdadero si se pudo extraer un número entero de la cadena str y no hay nada más después del número.
-}
-
-//Función para validar que la entrada por consola sea entero
-int obtenerEnteroValido(const string& mensaje) {
-    string entrada;
-    while (true) {
-        cout << mensaje;
-        cin >> entrada;
-        if (esEntero(entrada)) {
-            return atoi(entrada.c_str()); // Utiliza atoi para convertir la entrada a un entero y lo devuelve
-        } else {
-            cout << "Entrada no válida. Por favor, ingrese un número entero." << endl;
-        }
-    }
-}
+//Fución para registrar una nueva venta y un posible nuevo cliente
 
 
+//Funcion para imprimir en pantalla el total de ventas realizadas
+
+
+//Función para registrar una nueva devolción
+
+
+//Función para imprimir en pantalla el total de devoluciones realizadas
 
 //Función para la presentación del programa
 void unistore(){
