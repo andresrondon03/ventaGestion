@@ -54,7 +54,7 @@ void printProduc(tienda* articulos, int contador);
 void addExist(tienda* articulos, int contador);
 
 //Funciones para las ventas
-
+int nuevaVenta(tienda* articulos, int contador, venta* moremo, int contador2);
 void printVenta(venta* moremo, int contador2);
 
 //Funciones para las devoluciones
@@ -147,7 +147,7 @@ int main(){
 	    		system ("color 70");
 	    		system ("cls");
 	    		cout<<"\t\t!!Registrar una nueva venta!! \n";
-	    		
+	    		nuevaVenta( articulos, contador, moremo, contador2);
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -311,7 +311,46 @@ void addExist(tienda* articulos, int contador) {
 }
 
 //Fución para registrar una nueva venta y un posible nuevo cliente
-
+int nuevaVenta(tienda* articulos, int contador, venta* moremo, int contador2){
+	tienda produ;
+	venta compra;
+	cout << "Por favor ingrese la información de la venta: " << endl;
+    produ.Codigo = obtenerEnteroValido("Código del producto (número): ");
+    while(produ.Codigo <0){
+        produ.Codigo = obtenerEnteroValido("Ingrese un código válido: "); //Se verifican que no ingrese números negativos
+	}
+	//Revisar que el codigo este asociado a un producto
+    for (int i = 0; i < contador; i++) {
+		if( articulos[i].Codigo == produ.Codigo){
+			cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad << " existencias." << endl;
+			compra.Cantidad = obtenerEnteroValido("Ingrese las unidades por vender: ");
+			while (compra.Cantidad < 0) {
+        		compra.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
+    		}
+    		while (articulos[i].Cantidad - compra.Cantidad < 0) {//Se verifica que no sobrepase la cantidad de unidades del producto
+        		compra.Cantidad = obtenerEnteroValido("La cantidad ingresada supera las existencias del producto.\n Ingrese una cantidad válida: "); 
+    			while (compra.Cantidad < 0) {
+	        		compra.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
+	    		}
+			}
+			
+			//actualizamos la información del producto vendido
+			articulos[i].Cantidad -= compra.Cantidad;
+			compra.Nombre = articulos[i].Nombre; 
+			compra.Valor = articulos[i].Valor * compra.Cantidad;
+			compra.Codigo = contador2;
+			
+			cout << "Se vendieron " << compra.Cantidad << " unidades de " << compra.Nombre << ", por un valor de " << compra.Valor << endl;
+			
+			moremo[contador2] = compra;
+    		contador2++;
+    		
+    		return contador2;
+		} 	
+	}
+	cout << "El código ingresado no está asociado a ningún producto." << endl;
+	return contador2;
+}
 
 //Funcion para imprimir en pantalla el total de ventas realizadas
 void printVenta(venta* moremo, int contador2){
@@ -333,7 +372,7 @@ void printVenta(venta* moremo, int contador2){
 //Función para imprimir en pantalla el total de devoluciones realizadas
 void printDevo(devolu* lessmo, int contador3){
 	if(contador3 == 0){
-		cout<<"No hay devoluciones registradass."<< endl;
+		cout<<"No hay devoluciones registradas."<< endl;
 	}else{
 	    cout << "Se han realizado las siguientes ventas:\n";
 	    for (int i = 0; i < contador3; i++) {
