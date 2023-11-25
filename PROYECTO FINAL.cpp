@@ -1,6 +1,6 @@
 /*
-Programa: Proyecto final - Sistema de gestión de inventario y ventas 
-Autores: Andrés Felipe Rondón Lara - Andres Felipe Perez Motta - Andres Felipe Tovar Molina
+Programa: Proyecto final - Sistema de gestiÃ³n de inventario y ventas 
+Autores: AndrÃ©s Felipe RondÃ³n Lara - Andres Felipe Perez Motta - Andres Felipe Tovar Molina
 Fecha: 27 de noviembre de 2023
 */
 
@@ -46,7 +46,7 @@ struct devolu{
 };
 
 
-//Incluimos funciones que utilizaremos para la ejecucuión del programa
+//Incluimos funciones que utilizaremos para la ejecucuiÃ³n del programa
 void unistore();
 bool esEntero(const string& str);
 int obtenerEnteroValido(const string& mensaje);
@@ -68,7 +68,6 @@ void printDevo(devolu* lessmo, int contador3);
 int addClien(cliente* people, int contador4);
 
 
-
 // <<------------------------------ Inicio del programa ----------------------------------->> 
 int main(){
 	//Esta orden permite los caracteres especiales
@@ -87,48 +86,49 @@ int main(){
 	venta* moremo = new venta[300]; //moremo = more money = mas dinero
 	//Creamos un arreglo para las devoluciones de la tienda
 	devolu* lessmo = new devolu[100]; //lessmo = less money = menos dinero
+
 	//Creamos un arreglo para los clientes de la tienda
 	cliente* people = new cliente[200];
     int contador, contador2, contador3, contador4 = 0;
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
 	system("color 3F");
-	cout<<"\t\t\t\t¡¡¡Bienvenido a la gestión de tu emprendimiento!!!\n";
+	cout<<"\t\t\t\tÂ¡Â¡Â¡Bienvenido a la gestiÃ³n de tu emprendimiento!!!\n";
     cout<<endl;
     int menu;
-    //Se ingresa el menú principal
+    //Se ingresa el menÃº principal
     do{
-    	cout<<"\t\t¿Que deseas hacer hoy? \n";
+    	cout<<"\t\tÂ¿Que deseas hacer hoy? \n";
     	cout<<endl;
 		cout<<"\t\tRevisar tus productos \n";
 		cout<<"\t1. Crear producto. \n";
 		cout<<"\t2. Lista de productos. \n";
-		cout<<"\t3. Añadir existencia a un producto. \n";
+		cout<<"\t3. AÃ±adir existencia a un producto. \n";
 		cout<<endl;
 		cout<<"\t\tVentas\n";
 		cout<<"\t4. Registrar una nueva venta. \n ";
 		cout<<"\t5. Registro de ventas. \n";
 		cout<<endl;
 		cout<<"\t\tDevoluciones\n";
-		cout<<"\t6. Registra una nueva devolución\n";
+		cout<<"\t6. Registra una nueva devoluciÃ³n\n";
 		cout<<"\t7. Registro de devoluciones\n";
 		cout<<endl;
 		cout<<"\t\tFin del programa\n";
 		cout<<"\t8. Salir\n"<<endl;
-		menu = obtenerEnteroValido("Por favor, ingresa una opción: ");
+		menu = obtenerEnteroValido("Por favor, ingresa una opciÃ³n: ");
 		cout<<endl<<endl;
 		//Se limitan las respuestas del usuario
 	    while (menu<0||menu>8){
-	    	cout<<"La opción que seleccionaste no se encuentra en el menú \n";
-	    	menu = obtenerEnteroValido("Por favor, selecciona una opción válida \n");
+	    	cout<<"La opciÃ³n que seleccionaste no se encuentra en el menÃº \n";
+	    	menu = obtenerEnteroValido("Por favor, selecciona una opciÃ³n vÃ¡lida \n");
 		}
 		cout<<"\t\tSiempre disponible para ayudarte :D\n";
-		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menú principal
+		//Se ejecutan las distintas opciones que pudo elegir el usuario en el menÃº principal
 		switch(menu){
 	    	case 1:
 	    		system ("color 70");
 	    		system ("cls");
-	    		cout<<"\t\t¡¡Crear producto!! \n"<<endl;
-	    		contador= creaProduc( articulos, contador); //Se invoca la función
+	    		cout<<"\t\tÂ¡Â¡Crear producto!! \n"<<endl;
+	    		contador= creaProduc( articulos, contador); //Se invoca la funciÃ³n
 	    		cout<<endl;
 	    		system("cls");
 	    		system("color 3F");
@@ -136,8 +136,8 @@ int main(){
 	    	case 2:
 	    		system ("color 70");
 	    		system ("cls");
-	    		cout<<"\t\t¡¡Listar los productos!! \n" <<endl;
-	    		printProduc( articulos, contador); //Se invoca la función
+	    		cout<<"\t\tÂ¡Â¡Listar los productos!! \n" <<endl;
+	    		printProduc( articulos, contador); //Se invoca la funciÃ³n
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -146,8 +146,8 @@ int main(){
 	    	case 3:
 	    		system ("color 70");
 	    		system ("cls");
-	    		cout<<"\t\t¡¡Añadir existencia a un producto!! \n";
-	    		addExist( articulos, contador); //Se invoca la función
+	    		cout<<"\t\tÂ¡Â¡AÃ±adir existencia a un producto!! \n";
+	    		addExist( articulos, contador); //Se invoca la funciÃ³n
 	    		cout<<endl;
 	    		system("pause");
 	    		system("cls");
@@ -166,6 +166,7 @@ int main(){
 	    	case 5:
 	    		system ("color 70");
 	    		system ("cls");
+        
 	    		cout<<"\t\t¡¡Registro de ventas!! \n";
 	    		printVenta( moremo, contador2);
 	    		cout<<endl;
@@ -176,7 +177,7 @@ int main(){
 	    	case 6:
 	    		system ("color 70");
 	    		system ("cls");
-	    		cout<<"\t\t!!Registrar una devolución!! \n";
+	    		cout<<"\t\t!!Registrar una devoluciÃ³n!! \n";
 	    		
 	    		cout<<endl;
 	    		system("pause");
@@ -197,17 +198,17 @@ int main(){
 	}while (menu!=8);
 	system("cls");
 	system("color 6");
-	cout<<"\t\t\t\t\t¡¡¡Sigue así, vas por buen camino!!!\n";
+	cout<<"\t\t\t\t\tÂ¡Â¡Â¡Sigue asÃ­, vas por buen camino!!!\n";
 	unistore();
-	cout<<"\t\t\t\tNos vemos en una próxima ocasión, éxitos :D\n"<<endl;
+	cout<<"\t\t\t\tNos vemos en una prÃ³xima ocasiÃ³n, Ã©xitos :D\n"<<endl;
 	system("pause");
 	system("cls");
 	
-	//Se añaden los creditos del programa
-	cout<<"\t\t\t¡¡¡ Créditos del programa !!!\n"<<endl;
-	cout<<"\tAutores: Andrés Felipe Rondón - Andrés Felipe Perez - Andrés Felipe Tovar\n"<<endl;
-	cout<<"\tIngeniería de sistemas\n"<<endl;
-	cout<<"\tProgramación Básica 2023-3\n"<<endl;
+	//Se aÃ±aden los creditos del programa
+	cout<<"\t\t\tÂ¡Â¡Â¡ CrÃ©ditos del programa !!!\n"<<endl;
+	cout<<"\tAutores: AndrÃ©s Felipe RondÃ³n - AndrÃ©s Felipe Perez - AndrÃ©s Felipe Tovar\n"<<endl;
+	cout<<"\tIngenierÃ­a de sistemas\n"<<endl;
+	cout<<"\tProgramaciÃ³n BÃ¡sica 2023-3\n"<<endl;
 	system("pause");
 	return 0;
 }
@@ -215,14 +216,14 @@ int main(){
 
 //<<-----------------------------------------Se desarrollan las funciones------------------------------------------------------------>>
 
-//Función que retorna true si el número ingresado es entero	
+//FunciÃ³n que retorna true si el nÃºmero ingresado es entero	
 bool esEntero(const string& str) {
     stringstream ss(str); // Un stringstream se utiliza para operar en cadenas como si fueran flujos de entrada/salida.
     int n;
-    return (ss >> n) && ss.eof(); //Esto será verdadero si se pudo extraer un número entero de la cadena str y no hay nada más después del número.
+    return (ss >> n) && ss.eof(); //Esto serÃ¡ verdadero si se pudo extraer un nÃºmero entero de la cadena str y no hay nada mÃ¡s despuÃ©s del nÃºmero.
 }
 
-//Función para validar que la entrada por consola sea entero
+//FunciÃ³n para validar que la entrada por consola sea entero
 int obtenerEnteroValido(const string& mensaje) {
     string entrada;
     while (true) {
@@ -231,27 +232,27 @@ int obtenerEnteroValido(const string& mensaje) {
         if (esEntero(entrada)) {
             return atoi(entrada.c_str()); // Utiliza atoi para convertir la entrada a un entero y lo devuelve
         } else {
-            cout << "Entrada no válida. Por favor, ingrese un número entero." << endl;
+            cout << "Entrada no vÃ¡lida. Por favor, ingrese un nÃºmero entero." << endl;
         }
     }
 }
 
-//Función que crea un nuevo producto
+//FunciÃ³n que crea un nuevo producto
 int creaProduc(tienda* articulos, int contador){
 	while(true){
 		tienda produ;
-		cout << "Por favor ingrese la información del producto: " << endl;
-	    produ.Codigo = obtenerEnteroValido("Código (número): ");
+		cout << "Por favor ingrese la informaciÃ³n del producto: " << endl;
+	    produ.Codigo = obtenerEnteroValido("CÃ³digo (nÃºmero): ");
 	    while(produ.Codigo <0){
-	        produ.Codigo = obtenerEnteroValido("Ingrese un código válido: "); //Se verifican que no ingrese números negativos
+	        produ.Codigo = obtenerEnteroValido("Ingrese un cÃ³digo vÃ¡lido: "); //Se verifican que no ingrese nÃºmeros negativos
 		}
 		//Revisar que el codigo ya exista
 	    for (int i = 0; i < contador; i++) {
     		while( articulos[i].Codigo == produ.Codigo){
-		        produ.Codigo = obtenerEnteroValido("El código ya está en uso. Por favor ingrese otro código: "); //Se verifican que no hayan codigos repetidos
+		        produ.Codigo = obtenerEnteroValido("El cÃ³digo ya estÃ¡ en uso. Por favor ingrese otro cÃ³digo: "); //Se verifican que no hayan codigos repetidos
 			}
 		}
-		cin.ignore(); // Limpia el búfer de entrada
+		cin.ignore(); // Limpia el bÃºfer de entrada
 		cout << "Nombre: ";
 	    getline(cin, produ.Nombre);
 	    while (produ.Nombre.empty()) {
@@ -261,17 +262,17 @@ int creaProduc(tienda* articulos, int contador){
         }
 	    produ.Valor = obtenerEnteroValido("Valor unitario: ");
 	    while (produ.Valor < 0) {
-	        cout << "Ingrese un valor unitario válido: ";
-	        produ.Valor = obtenerEnteroValido("Ingrese un valor unitario válido: "); //Se verifican que no ingrese números negativos
+	        cout << "Ingrese un valor unitario vÃ¡lido: ";
+	        produ.Valor = obtenerEnteroValido("Ingrese un valor unitario vÃ¡lido: "); //Se verifican que no ingrese nÃºmeros negativos
 	    }
 		produ.Cantidad = obtenerEnteroValido("Existencias: ");
 	    while (produ.Cantidad < 0) {
-	        produ.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
+	        produ.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias vÃ¡lida: "); //Se verifican que no ingrese nÃºmeros negativos
 	    }
 	    articulos[contador] = produ;
 	    contador++;
 	    
-	    int continuar = obtenerEnteroValido("¿Desea agregar otro producto? (cualquier número para sí, 0 para no): "); //Se asume un agregar un nuevo producto sin volver al menú
+	    int continuar = obtenerEnteroValido("¿Desea agregar otro producto? (cualquier nÃºmero para sÃ­, 0 para no): "); //Se asume un agregar un nuevo producto sin volver al menÃº
 		system("cls");
         if (continuar == 0) {
             break;
@@ -306,10 +307,10 @@ void addExist(tienda* articulos, int contador) {
     for (int i = 0; i < contador; i++) {
         if (articulos[i].Codigo == cod) {
             cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad << " existencias." << endl;
-            nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaría agregar? \n");
+            nuevos = obtenerEnteroValido("Â¿Cuantas existencias le gustaría agregar? \n");
             while (nuevos < 0) {
                 cout << "Cantidad incorrecta, solo se admiten valores positivos" << endl;
-                nuevos = obtenerEnteroValido("¿Cuantas existencias le gustaría agregar?\n");
+                nuevos = obtenerEnteroValido("Â¿Cuantas existencias le gustaría agregar?\n");
                 cout << endl;
             }
             articulos[i].Cantidad += nuevos;
@@ -320,18 +321,19 @@ void addExist(tienda* articulos, int contador) {
     cout << "El código ingresado no está asociado a ningún producto." << endl;
 }
 
+
 //Función para registrar un nuevo cliente
 int addClien(cliente* people, int contador4){
 	cliente person;
-	cout<<"Por favor, ingrese la información de la persona"<<endl;
-	person.NumIden=obtenerEnteroValido("Número de identificación (CC o TI): ");
+	cout<<"Por favor, ingrese la informaciÃ³n de la persona"<<endl;
+	person.NumIden=obtenerEnteroValido("NÃºmero de identificaciÃ³n (CC o TI): ");
 	while (person.NumIden<0){
-		person.NumIden=obtenerEnteroValido("Ingrese un número de identificación válido: ");
+		person.NumIden=obtenerEnteroValido("Ingrese un nÃºmero de identificaciÃ³n vÃ¡lido: ");
 	}
 	//Revisar si la cédula ya exista
 	for (int i=0; i<contador4; i++){
 		while (people[i].NumIden==person.NumIden){
-			person.NumIden=obtenerEnteroValido("El número de identificación ya esta registrado. Por favor, ingrese uno nuevo: ");
+			person.NumIden=obtenerEnteroValido("El nÃºmero de identificaciÃ³n ya esta registrado. Por favor, ingrese uno nuevo: ");
 		}
 	}
 	cin.ignore(); // Limpia el búfer de entrada
@@ -342,7 +344,7 @@ int addClien(cliente* people, int contador4){
             cout << "Nombre: ";
             getline(cin, person.Nom);
     }
-    cin.ignore(); // Limpia el búfer de entrada
+    cin.ignore(); // Limpia el bÃºfer de entrada
 	cout << "Apellido: ";
 	getline(cin, person.Ape);
 	while (person.Ape.empty()) {
@@ -350,36 +352,36 @@ int addClien(cliente* people, int contador4){
             cout << "Apellido: ";
             getline(cin, person.Ape);
     }
-    cin.ignore(); // Limpia el búfer de entrada
-	cout << "Correo electronico: ";
+    cin.ignore(); // Limpia el bÃºfer de entrada
+	cout << "Correo electrónico: ";
 	getline(cin, person.Correo);
 	while (person.Correo.empty()) {
-            cout << "Debe ingresar un correo electronico." << endl;
-            cout << "Correo electronico: ";
+            cout << "Debe ingresar un correo electrónico." << endl;
+            cout << "Correo electrónico: ";
             getline(cin, person.Correo);
     }
 }
 
-//Función para registrar una nueva venta
+
+//Fución para registrar una nueva venta y un posible nuevo cliente
 int nuevaVenta(tienda* articulos, int contador, venta* moremo, int contador2){
 	tienda produ;
 	venta compra;
-	cliente people;
 	cout << "Por favor ingrese la información de la venta: " << endl;
     produ.Codigo = obtenerEnteroValido("Código del producto (número): ");
     while(produ.Codigo <0){
         produ.Codigo = obtenerEnteroValido("Ingrese un código válido: "); //Se verifican que no ingrese números negativos
+
 	}
 	//Revisar que el codigo este asociado a un producto
     for (int i = 0; i < contador; i++) {
-		if( articulos[i].Codigo == produ.Codigo){
 			cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad << " existencias." << endl;
 			compra.Cantidad = obtenerEnteroValido("Ingrese las unidades por vender: ");
 			while (compra.Cantidad < 0) {
         		compra.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
     		}
     		while (articulos[i].Cantidad - compra.Cantidad < 0) {//Se verifica que no sobrepase la cantidad de unidades del producto
-        		compra.Cantidad = obtenerEnteroValido("La cantidad ingresada supera las existencias del producto.\nIngrese una cantidad válida: "); 
+        		compra.Cantidad = obtenerEnteroValido("La cantidad ingresada supera las existencias del producto.\n Ingrese una cantidad válida: "); 
     			while (compra.Cantidad < 0) {
 	        		compra.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
 	    		}
@@ -417,7 +419,8 @@ void printVenta(venta* moremo, int contador2){
 	}
 }
 
-//Función para registrar una nueva devolución
+
+//Función para registrar una nueva devolción
 
 
 //Función para imprimir en pantalla el total de devoluciones realizadas
@@ -428,13 +431,13 @@ void printDevo(devolu* lessmo, int contador3){
 	    cout << "Se han realizado las siguientes ventas:\n";
 	    for (int i = 0; i < contador3; i++) {
 	    	cout<< endl;
-	        cout << "\tCódigo: " << lessmo[i].Codigo << endl << "\tNombre: " << lessmo[i].Nombre << endl << "\tValor unitario: " << lessmo[i].Valor << endl << "\tExistencias: " << lessmo[i].Cantidad<< endl; //Se imprimen los productos en pantalla
+	      cout << "\tCódigo: " << lessmo[i].Codigo << endl << "\tNombre: " << lessmo[i].Nombre << endl << "\tValor unitario: " << lessmo[i].Valor << endl << "\tExistencias: " << lessmo[i].Cantidad<< endl; //Se imprimen los productos en pantalla
 	    	cout<< endl;
 		}
 	}
 }
 
-//Función para la presentación del programa
+//FunciÃ³n para la presentaciÃ³n del programa
 void unistore(){
 	cout<<endl<<endl;
 	cout<<"\t                            *****************              *****************                                  \n";
