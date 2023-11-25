@@ -371,10 +371,10 @@ int nuevaVenta(tienda* articulos, int contador, venta* moremo, int contador2){
     produ.Codigo = obtenerEnteroValido("Código del producto (número): ");
     while(produ.Codigo <0){
         produ.Codigo = obtenerEnteroValido("Ingrese un código válido: "); //Se verifican que no ingrese números negativos
-
 	}
 	//Revisar que el codigo este asociado a un producto
     for (int i = 0; i < contador; i++) {
+		if( articulos[i].Codigo == produ.Codigo){
 			cout << "El artículo de nombre " << articulos[i].Nombre << " tiene actualmente " << articulos[i].Cantidad << " existencias." << endl;
 			compra.Cantidad = obtenerEnteroValido("Ingrese las unidades por vender: ");
 			while (compra.Cantidad < 0) {
@@ -386,18 +386,18 @@ int nuevaVenta(tienda* articulos, int contador, venta* moremo, int contador2){
 	        		compra.Cantidad = obtenerEnteroValido("Ingrese una catidad de existencias válida: "); //Se verifican que no ingrese números negativos
 	    		}
 			}
-			
+
 			//actualizamos la información del producto vendido
 			articulos[i].Cantidad -= compra.Cantidad;
 			compra.Nombre = articulos[i].Nombre; 
 			compra.Valor = articulos[i].Valor * compra.Cantidad;
 			compra.Codigo = contador2;
-			
+
 			cout << "Se vendieron " << compra.Cantidad << " unidades de " << compra.Nombre << ", por un valor de " << compra.Valor << endl;
-			
+
 			moremo[contador2] = compra;
     		contador2++;
-    		
+
     		return contador2;
 		} 	
 	}
