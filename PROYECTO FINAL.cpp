@@ -72,8 +72,16 @@ int main(){
     int contador, contador2, contador3 = 0;
 	//Se ejecuta el menú principal que vera el usuario en pantalla 
 	system("color 3F");
-	cout<<"\t\t\t\t¡¡¡Bienvenido a la gestión de tu emprendimiento!!!\n";
-    cout<<endl;
+	cout<<"\t\t         **********************************************************************         \n";
+	cout<<"\t\t       **************************************************************************       \n";
+	cout<<"\t\t     ******************************************************************************     \n";
+	cout<<"\t\t   ************                                                          ************   \n";
+	cout<<"\t\t *************         ¡¡¡BIENVENIDO A LA GESTIÓN DE UNISTORE!!!          ************* \n";
+	cout<<"\t\t   ************                                                          ************   \n";
+	cout<<"\t\t     ******************************************************************************     \n";
+	cout<<"\t\t       **************************************************************************       \n";
+	cout<<"\t\t         **********************************************************************         \n";
+    cout<<endl<<endl;
     int menu;
     //Se ingresa el menú principal
     do{
@@ -350,10 +358,10 @@ void printVenta(venta* moremo, int contador2){
 	}
 }
 //Función para registrar una nueva devolción
+
 //Función para imprimir en pantalla el total de devoluciones realizadas
 void printDevo(devolu* lessmo, int contador3){
 	if(contador3 == 0){
-		cout<<"No hay devoluciones registradass."<< endl;
 		cout<<"No hay devoluciones registradas."<< endl;
 	}else{
 	    cout << "Se han realizado las siguientes ventas:\n";
