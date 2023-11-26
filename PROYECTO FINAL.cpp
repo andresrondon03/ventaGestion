@@ -30,7 +30,10 @@ struct venta{
 
 // Struct para registar los clientes
 struct cliente{
-	
+	int NumIden;
+	string Nom;
+	string Ape;
+	string Correo;
 };
 
 // Struct para registrar las devoluciones
@@ -469,6 +472,46 @@ void printDevo(devolu* lessmo, int contador3){
 	    	cout<< endl;
 		}
 	}
+}
+
+//Función para registrar un nuevo cliente
+int addClien(cliente* people, int contador4){
+	cliente person;
+	cout<<"Por favor, ingrese la información de la persona"<<endl;
+	person.NumIden=obtenerEnteroValido("Número de identificación (CC o TI): ");
+	while (person.NumIden<0){
+		person.NumIden=obtenerEnteroValido("Ingrese un número de identificación válido: ");
+	}
+	//Revisar si la cédula ya exista
+	for (int i=0; i<contador4; i++){
+		while (people[i].NumIden==person.NumIden){
+			person.NumIden=obtenerEnteroValido("El número de identificación ya esta registrado. Por favor, ingrese uno nuevo: ");
+		}
+	}
+	cin.ignore(); // Limpia el búfer de entrada
+	cout << "Nombre: ";
+	getline(cin, person.Nom);
+	while (person.Nom.empty()) {
+            cout << "Debe ingresar un nombre." << endl;
+            cout << "Nombre: ";
+            getline(cin, person.Nom);
+    }
+    cin.ignore(); // Limpia el búfer de entrada
+	cout << "Apellido: ";
+	getline(cin, person.Ape);
+	while (person.Ape.empty()) {
+            cout << "Debe ingresar un apellido." << endl;
+            cout << "Apellido: ";
+            getline(cin, person.Ape);
+    }
+    cin.ignore(); // Limpia el búfer de entrada
+	cout << "Correo electronico: ";
+	getline(cin, person.Correo);
+	while (person.Correo.empty()) {
+            cout << "Debe ingresar un correo electronico." << endl;
+            cout << "Correo electronico: ";
+            getline(cin, person.Correo);
+    }
 }
 
 // Función para la presentación del programa
