@@ -63,6 +63,9 @@ void printVenta(venta* moremo, int contador2);
 int devolver(tienda* articulos, int contador, venta* moremo, int contador2, devolu* lessmo, int contador3);
 void printDevo(devolu* lessmo, int contador3);
 
+// Función para los datos del cliente
+int addClien(cliente* people, int contador4);
+
 
 // <<------------------------------ Inicio del programa ----------------------------------->> 
 int main(){
@@ -84,6 +87,7 @@ int main(){
 	int contador = 0;
     int contador2 = 0;
     int contador3 = 0;
+    int contador4 = 0;
 	// Se ejecuta el menú principal que vera el usuario en pantalla 
 	system("color 3F");
 	cout<<"\t\t         **********************************************************************         \n";
