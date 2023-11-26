@@ -448,7 +448,7 @@ int devolver(tienda* articulos, int contador, venta* moremo, int contador2, devo
 
     // Registrar la devolución
     regreso.Cantidad = obtenerEnteroValido("Ingrese las unidades por regresar: ");
-    while (regreso.Cantidad < 0 || regreso.Cantidad > compra.Cantidad) { // Se valida que la canttidad de productos devueltos sea menor a la cantidad de productos vendidos
+    while (regreso.Cantidad < 0 || regreso.Cantidad > compra.Cantidad) { // Se valida que la cantidad de productos devueltos sea menor a la cantidad de productos vendidos
         regreso.Cantidad = obtenerEnteroValido("Ingrese una cantidad válida: ");
     }
 
@@ -478,15 +478,15 @@ void printDevo(devolu* lessmo, int contador3){
 	}
 }
 
-//Función para registrar un nuevo cliente
+// Función para registrar un nuevo cliente
 int addClien(cliente* people, int contador4){
 	cliente person;
 	cout<<"Por favor, ingrese la información de la persona"<<endl;
 	person.NumIden=obtenerEnteroValido("Número de identificación (CC o TI): ");
-	while (person.NumIden<0){
+	while (person.NumIden<0){ // Se verifican que no ingrese números negativos
 		person.NumIden=obtenerEnteroValido("Ingrese un número de identificación válido: ");
 	}
-	//Revisar si la cédula ya exista
+	// Revisar si el número de identificación ya exista
 	for (int i=0; i<contador4; i++){
 		while (people[i].NumIden==person.NumIden){
 			person.NumIden=obtenerEnteroValido("El número de identificación ya esta registrado. Por favor, ingrese uno nuevo: ");
@@ -495,7 +495,7 @@ int addClien(cliente* people, int contador4){
 	cin.ignore(); // Limpia el búfer de entrada
 	cout << "Nombre: ";
 	getline(cin, person.Nom);
-	while (person.Nom.empty()) {
+	while (person.Nom.empty()) { //Se verifica que el usuario no deje el espacio en blanco
             cout << "Debe ingresar un nombre." << endl;
             cout << "Nombre: ";
             getline(cin, person.Nom);
@@ -503,7 +503,7 @@ int addClien(cliente* people, int contador4){
     cin.ignore(); // Limpia el búfer de entrada
 	cout << "Apellido: ";
 	getline(cin, person.Ape);
-	while (person.Ape.empty()) {
+	while (person.Ape.empty()) { //Se verifica que el usuario no deje el espacio en blanco
             cout << "Debe ingresar un apellido." << endl;
             cout << "Apellido: ";
             getline(cin, person.Ape);
@@ -511,7 +511,7 @@ int addClien(cliente* people, int contador4){
     cin.ignore(); // Limpia el búfer de entrada
 	cout << "Correo electronico: ";
 	getline(cin, person.Correo);
-	while (person.Correo.empty()) {
+	while (person.Correo.empty()) { //Se verifica que el usuario no deje el espacio en blanco
             cout << "Debe ingresar un correo electronico." << endl;
             cout << "Correo electronico: ";
             getline(cin, person.Correo);
